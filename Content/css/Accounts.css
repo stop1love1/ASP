@@ -1,0 +1,49 @@
+﻿﻿
+footer {
+    text-align: center;
+    margin-top: 70px;
+    font-size: 16px;
+}
+
+.lbltentaikhoan {
+    margin-left: 50px;
+}
+
+.txttentaikhoan {
+    margin-left: 23px;
+    Width: 170px;
+    Font-Size: 16px;
+}
+
+.lblnguoidung {
+    margin-left: 50px;
+}
+
+.txtnguoidung {
+    margin-left: 5px;
+    margin-top: 33px;
+    Width: 170px;
+    Font-Size: 16px;
+}
+
+.lblmatkhau {
+    margin-left: 50px;
+}
+
+.txtmatkhau {
+    margin-left: 55px;
+    margin-top: 33px;
+    Width: 170px;
+    Font-Size: 16px;
+}
+
+.ckbadmin {
+    margin-left: 30%;
+    font-size: 25px;
+}
+
+.ckbnhanvien {
+    margin-left: 30%;
+    margin-top: 50%;
+    font-size: 25px;
+}
