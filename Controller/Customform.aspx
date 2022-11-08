@@ -8,13 +8,21 @@
         </center>
             <br />
         <div class="rowright">
-            <asp:Label ID="Label10" runat="server" Text="Từ ngày: "></asp:Label>
-            <asp:TextBox ID="txtTuNgay4" runat="server" TextMode="date"></asp:TextBox>
-            <asp:Label ID="Label11" runat="server" Text="đến"></asp:Label>
-            <asp:TextBox ID="txtDenNgay4" runat="server" TextMode="Date"></asp:TextBox>
         </div>
         <br />
-        <asp:GridView ID="GridViewCustom" runat="server" Height="295px" Width="100%" AutoGenerateSelectButton="True" BorderColor="Black" BorderStyle="Inset" HorizontalAlign="Center" OnSelectedIndexChanged="GridViewCustom_SelectedIndexChanged" >
+        <asp:GridView ID="GridViewCustom" runat="server" Height="295px" Width="100%" AutoGenerateSelectButton="True" HorizontalAlign="Center" OnSelectedIndexChanged="GridViewCustom_SelectedIndexChanged" CellPadding="4" ForeColor="#333333" GridLines="None" >
+            
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             
         </asp:GridView>
         <asp:Panel ID="Panel2" runat="server" Height="31px"><br />

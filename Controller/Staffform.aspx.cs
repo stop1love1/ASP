@@ -276,8 +276,6 @@ namespace HalBookstore
         {
             GridViewStaff.SelectedIndex = index;
             GridViewRow row = GridViewStaff.Rows[index];
-            row.BackColor = Color.Black;
-            row.ForeColor = Color.White;
             Lock(true);
             txtNguoiDung3.Text = row.Cells[2].Text;
             txtTaiKhoan3.Text = row.Cells[9].Text;

@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace HalBookstore.Connect
 {
@@ -227,6 +228,85 @@ namespace HalBookstore.Connect
         #endregion
 
         #region STATISFICAL
+        public int GetAmountProductAMonth(int month)
+        {
+            int amount = 0;
+            string sql = "";
+            for (int i = 1; i <= 13; i++)
+            {
+                if (i == 13)
+                {
+                    sql = $"SELECT SUM(PRODUCT.AMOUNT) FROM PRODUCT WHERE PRODUCT.CREATE_AT >= #01/01/{DateTime.Today.ToString("yyyy")}# AND PRODUCT.CREATE_AT <= #12/31/{DateTime.Today.ToString("yyyy")}#";
+                    try
+                    {
+                        connection.Open();
+                    }
+                    catch { connection.Close(); connection.Open(); }
+                    command.Connection = connection;
+                    command.CommandText = sql;
+                    using (dbDataReader = command.ExecuteReader())
+                    {
+                        if (dbDataReader.HasRows)
+                        {
+                            while (dbDataReader.Read())
+                            {
+                                amount = (int)dbDataReader.GetDouble(0);
+                            }
+                        }
+                    }
+                    break;
+                }
+                else if (month == i)
+                {
+                    sql = $"SELECT PRODUCT.AMOUNT FROM PRODUCT WHERE PRODUCT.CREATE_AT >= #{i}/01/{DateTime.Today.ToString("yyyy")}# AND PRODUCT.CREATE_AT <= #{i}/{GetDaysOfMonth(i)}/{DateTime.Today.ToString("yyyy")}#";
+                    adapter = new OleDbDataAdapter(sql, connection);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    if (dataTable.Rows.Count != 0)
+                    {
+                        for (int j = 0; j < dataTable.Rows.Count; j++)
+                        {
+                            amount += dataTable.Rows[j].Field<int>(0);
+                        }
+                    }
+                    else
+                    {
+                        amount = 0;
+                    }
+                    break;
+                }
+            }
+            return amount;
+        }
+        public int GetDaysOfMonth(int month)
+        {
+            bool check = false;
+            if (int.Parse(DateTime.Today.ToString("yyyy")) % 4 == 0 && int.Parse(DateTime.Today.ToString("yyyy")) % 100 == 0
+                || int.Parse(DateTime.Today.ToString("yyyy")) % 400 == 0)
+            {
+                check = true;
+            }
+            if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+            {
+                return 31;
+            }
+            else if (month == 4 || month == 6 || month == 9 || month == 11)
+            {
+                return 30;
+            }
+            else if (check && month == 2)
+            {
+                return 29;
+            }
+            else if (!check && month == 2)
+            {
+                return 28;
+            }
+            else
+            {
+                return -1;
+            }
+        }
         #endregion
 
         #region ALL

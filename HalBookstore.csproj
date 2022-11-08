@@ -50,6 +50,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -126,6 +127,7 @@
     <Content Include="Controller\RecoverPass.aspx" />
     <Content Include="Controller\Registerform.aspx" />
     <Content Include="Controller\Staffform.aspx" />
+    <Content Include="Controller\ThongKeForm.aspx" />
     <Content Include="Database\HalBookstore - Copy.accdb" />
     <Content Include="Database\HalBookstore.accdb" />
     <Content Include="Default.aspx" />
@@ -257,6 +259,13 @@
     </Compile>
     <Compile Include="Controller\Staffform.aspx.designer.cs">
       <DependentUpon>Staffform.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\ThongKeForm.aspx.cs">
+      <DependentUpon>ThongKeForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controller\ThongKeForm.aspx.designer.cs">
+      <DependentUpon>ThongKeForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

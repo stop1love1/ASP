@@ -22,10 +22,11 @@ namespace HalBookstore
         {
             dao = new DAO();
             LoadData("SELECT * FROM PRODUCT");
-            txtTuNgay.Text = "01/01/2022";
-            txtDenNgay.Text = DateTime.Today.ToString("dd/MM/yyyy");
+           
             if (!IsPostBack)
             {
+                txtTuNgay.Text = "01/01/2022";
+                txtDenNgay.Text = DateTime.Today.ToString("dd/MM/yyyy");
                 LockControl(true);
                 memory = 0;
                 GetValueInformation(memory);
@@ -230,6 +231,12 @@ namespace HalBookstore
                 dataTable.Columns[7].ColumnName = "Ngày cập nhật";
                 GridViewProducts.DataSource = dataTable;
                 GridViewProducts.DataBind();
+                for(int i=0; i< GridViewProducts.Rows.Count; i++)
+                {
+                    GridViewProducts.Rows[i].Cells[7].Text = DateTime.Parse(GridViewProducts.Rows[i].Cells[7].Text).ToString("dd/MM/yy HH:mm:ss");
+                    GridViewProducts.Rows[i].Cells[8].Text = DateTime.Parse(GridViewProducts.Rows[i].Cells[8].Text).ToString("dd/MM/yy HH:mm:ss");
+                }
+                Alert($"Tổng {GridViewProducts.Rows.Count} sản phẩm",0);
             }
             else
             {
@@ -248,8 +255,7 @@ namespace HalBookstore
         }
         void GetValueInformation(int index)
         {
-            GridViewProducts.Rows[index].BackColor = Color.Black;
-            GridViewProducts.Rows[index].ForeColor = Color.White;
+            GridViewProducts.SelectedIndex = index;
             GridViewRow row = GridViewProducts.Rows[index];
             int id = int.Parse(row.Cells[1].Text);
             Product product = dao.GetProducts($"SELECT * FROM PRODUCT WHERE PRODUCT.ID = {id}")[0];
@@ -415,10 +421,14 @@ namespace HalBookstore
 
         protected void txtTuNgay_TextChanged(object sender, EventArgs e)
         {
-            if (DateTime.Parse(txtTuNgay.Text) <= DateTime.Parse(txtDenNgay.Text))
+            try
             {
-                LoadData($"SELECT * FROM PRODUCT WHERE PRODUCT.CREATE_AT >= #{txtTuNgay.Text}# AND PRODUCT.CREATE_AT <= #{txtDenNgay.Text}#");
+                if (DateTime.Parse(txtTuNgay.Text) <= DateTime.Parse(txtDenNgay.Text))
+                {
+                    LoadData($"SELECT * FROM PRODUCT WHERE PRODUCT.CREATE_AT >= #{txtTuNgay.Text}# AND PRODUCT.CREATE_AT <= #{txtDenNgay.Text}#");
+                }
             }
+            catch { }
         }
     }
 }

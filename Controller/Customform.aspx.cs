@@ -173,10 +173,11 @@ namespace HalBookstore
                 dataTable.Columns[7].ColumnName = "Ghi chú";
                 GridViewCustom.DataSource = dataTable;
                 GridViewCustom.DataBind();
+                lblAlert.Text = $"Tổng {GridViewCustom.Rows.Count} khách hàng.";
             }
             else
             {
-                lblAlert.Text = "Không tìm thấy nhân viên nào!";
+                lblAlert.Text = "Không tìm thấy khách hàng nào!";
             }
         }
         bool ValdidateForm()
@@ -241,8 +242,6 @@ namespace HalBookstore
         {
             GridViewCustom.SelectedIndex = index;
             GridViewRow row = GridViewCustom.Rows[index];
-            row.BackColor = Color.Black;
-            row.ForeColor = Color.White;
             Lock(true);
             txtnguoidung2.Text = HttpUtility.HtmlDecode(row.Cells[3].Text);
             txtTenTaiKhoan2.Text = HttpUtility.HtmlDecode(row.Cells[2].Text);

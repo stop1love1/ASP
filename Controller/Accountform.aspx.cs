@@ -173,10 +173,24 @@ namespace HalBookstore
         void LoadData(string sql)
         {
             DataTable dataTable = dao.GetDataTable(sql);
+            dataTable.Columns[0].ColumnName = "ID";
+            dataTable.Columns[1].ColumnName = "Tài khoản";
+            dataTable.Columns[2].ColumnName = "Mật khẩu";
+            dataTable.Columns[3].ColumnName = "Họ tên";
+            dataTable.Columns[4].ColumnName = "Mã bảo mật";
+            dataTable.Columns[5].ColumnName = "Nhân viên";
+            dataTable.Columns[6].ColumnName = "Admin";
+            dataTable.Columns[7].ColumnName = "Ngày tạo";
+            dataTable.Columns[8].ColumnName = "Ngày cập nhật";
             if (dataTable.Rows.Count > 0)
             {
                 GridViewAccount.DataSource = dataTable;
                 GridViewAccount.DataBind();
+                for(int i=0; i< GridViewAccount.Rows.Count; i++)
+                {
+                    GridViewAccount.Rows[i].Cells[8].Text = DateTime.Parse(GridViewAccount.Rows[i].Cells[8].Text).ToString("dd/MM/yyyy HH:mm:ss");
+                    GridViewAccount.Rows[i].Cells[9].Text = DateTime.Parse(GridViewAccount.Rows[i].Cells[9].Text).ToString("dd/MM/yyyy HH:mm:ss");
+                }
             }
             else
             {
@@ -186,14 +200,11 @@ namespace HalBookstore
         void SelectedRow(int index)
         {
             GridViewAccount.SelectedIndex = index;
-            GridViewAccount.Rows[index].BackColor = Color.Black;
-            GridViewAccount.Rows[index].ForeColor = Color.White;
             lblCount.Text = $"{index+1}/{GridViewAccount.Rows.Count}";
         }
         protected void GridViewAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GridViewAccount.Rows[GridViewAccount.SelectedIndex].BackColor = Color.Black;
-            GridViewAccount.Rows[GridViewAccount.SelectedIndex].ForeColor = Color.White;
+            SelectedRow(GridViewAccount.SelectedIndex);
         }
     }
 }

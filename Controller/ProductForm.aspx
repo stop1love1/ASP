@@ -10,12 +10,23 @@
         </center>
         <div class="rowright">
             <asp:Label ID="Label7" runat="server" Text="Từ ngày: "></asp:Label>
-            <asp:TextBox ID="txtTuNgay" runat="server" TextMode="date" OnTextChanged="txtTuNgay_TextChanged">01-01-2022</asp:TextBox>
+            <asp:TextBox ID="txtTuNgay" runat="server" TextMode="date" OnTextChanged="txtTuNgay_TextChanged" AutoPostBack="True">01-01-2022</asp:TextBox>
             <asp:Label ID="Label8" runat="server" Text="đến"></asp:Label>
-            <asp:TextBox ID="txtDenNgay" runat="server" TextMode="Date" OnTextChanged="txtTuNgay_TextChanged">31-12-2022</asp:TextBox>
+            <asp:TextBox ID="txtDenNgay" runat="server" TextMode="Date" OnTextChanged="txtTuNgay_TextChanged" AutoPostBack="True">31-12-2022</asp:TextBox>
         </div>
         <br />
-        <asp:GridView ID="GridViewProducts" runat="server" Height="295px" Width="100%" AutoGenerateSelectButton="True" BorderColor="Black" BorderStyle="Inset" HorizontalAlign="Center" OnSelectedIndexChanged="GridViewProducts_SelectedIndexChanged">
+        <asp:GridView ID="GridViewProducts" runat="server" Height="295px" Width="100%" AutoGenerateSelectButton="True" BorderColor="#DEDFDE" BorderStyle="None" HorizontalAlign="Center" OnSelectedIndexChanged="GridViewProducts_SelectedIndexChanged" BackColor="White" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical">
+            
+            <AlternatingRowStyle BackColor="White" />
+            <FooterStyle BackColor="#CCCC99" />
+            <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
+            <RowStyle BackColor="#F7F7DE" />
+            <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#FBFBF2" />
+            <SortedAscendingHeaderStyle BackColor="#848384" />
+            <SortedDescendingCellStyle BackColor="#EAEAD3" />
+            <SortedDescendingHeaderStyle BackColor="#575357" />
             
         </asp:GridView>
         <asp:Panel ID="Panel2" runat="server" Height="31px"><br />
