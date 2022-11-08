@@ -32,10 +32,35 @@ namespace HalBookstore.Controller
                 listAmountImported.Add(dao.GetAmountProductAMonth(i));
             }
             SetImportedChart(listAmountImported);
+            string idBill = gridViewBill.Rows[gridViewBill.SelectedIndex].Cells[1].Text;
+            DataTable dataTable = dao.GetDataTable($"SELECT * FROM SOLD_PRODUCT WHERE ID_BILL = '{idBill}'");
+            dataTable.Columns[1].ColumnName = "Mã sách";
+            dataTable.Columns[2].ColumnName = "Mã hóa đơn";
+            dataTable.Columns[3].ColumnName = "Tên sách";
+            dataTable.Columns[4].ColumnName = "Đơn giá";
+            dataTable.Columns[5].ColumnName = "Số lượng";
+            dataTable.Columns[6].ColumnName = "Giảm giá";
+            dataTable.Columns[7].ColumnName = "Thành tiền";
+            dataTable.Columns[8].ColumnName = "Ngày bán";
+            gridViewDetail.DataSource = dataTable;
+            gridViewDetail.DataBind();
+            gridViewDetail.Rows[0].Cells[0].Width = 30;
+            gridViewDetail.Rows[0].Cells[1].Width = 70;
+            gridViewDetail.Rows[0].Cells[2].Width = 120;
+            gridViewDetail.Rows[0].Cells[4].Width = 100;
+            gridViewDetail.Rows[0].Cells[5].Width = 100;
+            gridViewDetail.Rows[0].Cells[6].Width = 100;
+            gridViewDetail.Rows[0].Cells[7].Width = 100;
+            for (int i = 0; i < gridViewDetail.Rows.Count; i++)
+            {
+                gridViewDetail.Rows[i].Cells[8].Text = DateTime.Parse(gridViewDetail.Rows[i].Cells[8].Text).ToString("dd/MM/yyyy");
+            }
+            lblCountDetail.Text = $"Tổng {gridViewDetail.Rows.Count} sản phẩm";
         }
-        void Alert()
+        public override void VerifyRenderingInServerForm(Control control)
         {
-
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
         }
         private void LoadDataDTNV(string querry)
         {
@@ -173,8 +198,9 @@ namespace HalBookstore.Controller
         protected void btnDetail_Click(object sender, EventArgs e)
         {
             string idBill = gridViewBill.Rows[gridViewBill.SelectedIndex].Cells[1].Text;
-
-
+            DataTable dataTable = dao.GetDataTable($"SELECT * FROM SOLD_PRODUCT WHERE ID_BILL = '{idBill}'");
+            gridViewDetail.DataSource = dataTable;
+            gridViewDetail.DataBind();
         }
 
         protected void txtTuNgay_TextChanged(object sender, EventArgs e)
@@ -191,6 +217,11 @@ namespace HalBookstore.Controller
                 }
             }
             catch { }
+        }
+
+        protected void btnXuatFile_Click(object sender, EventArgs e)
+        {
+            Export(gridViewDetail);
         }
 
         void Export(GridView gridView)

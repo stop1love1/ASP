@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Thống kê" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ThongKeForm.aspx.cs" Inherits="HalBookstore.Controller.ThongKeForm" %>
+﻿<%@ Page Title="Thống kê" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ThongKeForm.aspx.cs" Inherits="HalBookstore.Controller.ThongKeForm" EnableEventValidation="false"  %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -88,13 +88,14 @@
                 </asp:GridView>
             </asp:Panel>
             </div>
-            <div class="col-md-4">
-                <asp:Label ID="Label3" runat="server" Text="Bảng xếp hạng" style="float: right; margin-top: 100px; margin-right: 10px; font-size: 30px;"></asp:Label><br /><br /><br />
-                <div style="width: 200px; height: 350px; margin-top: 10px; float: right;">
-                        <br />
-                        <asp:Label ID="lblTop1" runat="server" Text="Top 1:" style="font-size: 16px; color: red;"></asp:Label><br /><br />
-                        <asp:Label ID="lblTop2" runat="server" Text="Top 2:" style="font-size: 16px; color: green;"></asp:Label><br /><br />
-                        <asp:Label ID="lblTop3" runat="server" Text="Top 3:" style="font-size: 16px; color: #bf5f00"></asp:Label><br /><br />
+           <div class="col-md-4" style="margin-top: 3%; float: right;">
+                    <div style="width: 350px; height: 350px; margin-top: 10px;">
+                        <center>
+                            <asp:Label ID="Label3" runat="server" Text="Bảng xếp hạng" style="margin-top: 100px; font-size: 30px;"></asp:Label><br /><br /><br />
+                        </center>
+                        <asp:Label ID="lblTop1" runat="server" Text="Top 1:" style="font-size: 16px; color: red;"></asp:Label><br /><br /><br />
+                        <asp:Label ID="lblTop2" runat="server" Text="Top 2:" style="font-size: 16px; color: green;"></asp:Label><br /><br /><br />
+                        <asp:Label ID="lblTop3" runat="server" Text="Top 3:" style="font-size: 16px; color: #bf5f00"></asp:Label><br /><br /><br />
                 </div>
             </div>
         </asp:View>
@@ -126,10 +127,33 @@
                 <asp:Label ID="lblCount" runat="server" Text="Tổng 9 hoá đơn đã bán" Font-Size="16px"></asp:Label>
             </div>
             <div style="float: right; margin-right: 30px;"><br />
-                <asp:Button ID="btnDetail" runat="server" Text="Xem chi tiết" Font-Size="16px" OnClick="btnDetail_Click"/>
+                <asp:LinkButton ID="btnDetail" runat="server" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" Font-Size="16px" OnClick="btnDetail_Click">Xem chi tiết</asp:LinkButton>
+
             </div>
         </asp:View>
     </asp:MultiView>    
     </div>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-left: 15%;">
+            <div class="modal-content" style="width: 900px;">
+                <div class="modal-header">
+                    <center>
+                        <asp:Label ID="Label4" runat="server" class="modal-title" Text="Thông tin chi tiết" Font-Bold="true" Font-Size="20px"></asp:Label><br />
+                        <asp:Label ID="lblCountDetail" runat="server" Text="3 sản phẩm"></asp:Label>
+                    </center>
+                </div>
+                <div class="modal-body">
+                    <asp:GridView ID="gridViewDetail" runat="server"></asp:GridView>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnThoat" runat="server" type="button" class="btn btn-secondary" data-dismiss="modal" Text="Thoát" />
+                    <asp:Button ID="btnXuatFile" runat="server" type="button" class="btn btn-primary" Text="Xuất file" OnClick="btnXuatFile_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </div>
 </asp:Content>

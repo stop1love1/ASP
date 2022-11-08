@@ -40,7 +40,7 @@
             <br />
             <asp:Panel ID="PanelSearch" runat="server">
             <div style="border: solid 1px; width: 60%; margin-left: 20%;"><br /><br />
-            <asp:Panel ID="pnInformation" runat="server" Height="250px">
+          <asp:Panel ID="pnInformation" runat="server" Height="170px">
                 <div class="left-column">
                     <asp:Label ID="Label2" runat="server" Text="Tên tài khoản" Font-Size="16px" class="lbltentaikhoan"></asp:Label>
                     <asp:TextBox ID="txtTaiKhoan" runat="server" class="txttentaikhoan"></asp:TextBox><br /><br />
@@ -49,11 +49,12 @@
                     <br /><br />
                 </div>
                 <div class="right-column">
-                    <asp:CheckBox ID="ckbadmin" runat="server" class="ckbadmin" AutoPostBack="True"/><span style="margin-left: 10px;">Admin</span><br /><br /><br />
-                    <asp:CheckBox ID="ckbnhanvien" runat="server" class="ckbnhanvien" AutoPostBack="True"/><span style="margin-left: 10px;">Nhân viên</span>
+                    <asp:CheckBox ID="ckbadmin" runat="server" class="ckbadmin" AutoPostBack="True" Text=" Admin" style="margin-left: 25%;"/><br /><br /><br /><br />
+                    <asp:CheckBox ID="ckbnhanvien" runat="server" class="ckbnhanvien" AutoPostBack="True" Text="Nhân viên" style="margin-left: 25%;"/>
                 </div>  
                 <br />
             </asp:Panel>
+
                 </div>
                 </asp:Panel>
             <asp:Panel ID="Panel4" runat="server" Height="40px" class="content"><br />
